@@ -66,11 +66,11 @@ class EtymologyRNN(torch.nn.Module):
         lens = None
         if pack_sequence:
             lens = torch.tensor(
-                [s.tolist().index(True) for s in x == self.padding_idx]
+                [s.tolist().index(True) if any(s) else s.size(dim=0) for s in x == self.padding_idx]
             ).cpu()
         x = self.embedding(x)
         if pack_sequence:
-            x = torch.nn.utils.rnn.pack_padded_sequence(x, lens, batch_first=True)  # type: ignore
+            x = torch.nn.utils.rnn.pack_padded_sequence(x, lens, batch_first=True, enforce_sorted=False)  # type: ignore
         x, _ = self.rnn(x)
         if pack_sequence:
             x, _ = torch.nn.utils.rnn.pad_packed_sequence(x, batch_first=True)  # type: ignore
