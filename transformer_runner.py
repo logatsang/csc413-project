@@ -12,6 +12,11 @@ from tqdm import tqdm, trange
 from transformer_model import Transformer
 from dataloader import EtymologyDataLoader, EtymologyDataset, df_to_array
 
+from model.rnn import EtymologyRNN
+from model.transformer_encoder import EtymologyTransformerEncoder
+
+DATA = r"data/etymology_top10.csv"
+
 if __name__ == "__main__":
     if gpu := torch.cuda.is_available():
         device = torch.device('cuda')
@@ -20,8 +25,9 @@ if __name__ == "__main__":
         device = torch.device('cpu')
         print(f"Using CPU")
 
-    df = pd.read_csv("data/etymology_proc_pooled.csv")
+    df = pd.read_csv(DATA)
     input_vec, target_vec, i_to_lang, i_to_char, vocab_size, num_output_classes = df_to_array(df)
+    padding_idx = vocab_size - 1
 
     X_train, X_test, y_train, y_test = train_test_split(input_vec, target_vec, test_size=0.4)
     X_test, X_val, y_test, y_val = train_test_split(X_test, y_test, test_size=0.5)
@@ -41,6 +47,21 @@ if __name__ == "__main__":
         num_layers=8,
         padding_idx=vocab_size - 1
     )
+
+    # model = EtymologyRNN(
+    #     vocab_size=vocab_size,
+    #     embedding_size=word_embedding_size,
+    #     hidden_size=word_embedding_size,
+    #     num_classes=num_output_classes,
+    #     padding_idx=padding_idx,
+    # )
+
+    # model = EtymologyTransformerEncoder(
+    #     vocab_size=vocab_size,
+    #     num_classes=num_output_classes,
+    #     embedding_size=word_embedding_size,
+    #     padding_idx=padding_idx,
+    # )
 
     train_dataset = EtymologyDataset(X_train, y_train)
     train_dl = EtymologyDataLoader(train_dataset, batch_size=batch_size, pin_memory=gpu)
@@ -83,6 +104,7 @@ if __name__ == "__main__":
                       position=1, dynamic_ncols=True) as it:
 
                 # train
+                model.train()
                 for i, (X, y) in enumerate(train_dl):
                     X = X.to(device)
                     y = y.to(device).type(torch.long)
@@ -118,7 +140,7 @@ if __name__ == "__main__":
                         with torch.no_grad():
                             logits = model.forward(X)
                             output = torch.argmax(logits, dim=-1)
-                            accurate = sum(output == y)
+                            accurate += sum(output == y)
 
                             it.update()
 
@@ -129,7 +151,7 @@ if __name__ == "__main__":
             pbar.bar_format = barfmt % epoch
 
     fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(12.8, 9.6))
-    save = False
+    save = True
 
     training_steps = [x for x in range(1, num_training_steps + 1)]
 
