@@ -12,6 +12,7 @@ from tqdm import tqdm, trange
 from transformer_model import Transformer
 from dataloader import EtymologyDataLoader, EtymologyDataset, df_to_array
 
+from model.cnn import EtymologyCNN
 from model.rnn import EtymologyRNN
 from model.transformer_encoder import EtymologyTransformerEncoder
 
@@ -38,15 +39,26 @@ if __name__ == "__main__":
     num_epochs = 50
     learning_rate = 1.0
 
-    model = Transformer(
-        src_vocab_size=vocab_size,
-        d_model=word_embedding_size,
-        d_ff=2048,
-        num_heads=4,
-        output_classes=num_output_classes,
-        num_layers=8,
-        padding_idx=vocab_size - 1
+    model = EtymologyCNN(
+        vocab_size=vocab_size,
+        embedding_size=word_embedding_size,
+        num_classes=num_output_classes,
+        conv_layers=(
+            (3, 1, 1, 2, 2, 0),
+        ),
+        conv_filter_count=16,
+        padding_idx=padding_idx,
     )
+
+    # model = Transformer(
+    #     src_vocab_size=vocab_size,
+    #     d_model=word_embedding_size,
+    #     d_ff=2048,
+    #     num_heads=4,
+    #     output_classes=num_output_classes,
+    #     num_layers=8,
+    #     padding_idx=vocab_size - 1
+    # )
 
     # model = EtymologyRNN(
     #     vocab_size=vocab_size,
