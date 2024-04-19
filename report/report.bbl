@@ -1,0 +1,196 @@
+\begin{thebibliography}{}
+
+\bibitem [\protect \citeauthoryear {%
+Doherty%
+, Panigrahi%
+\BCBL {}\ \BBA {} do Carmo%
+}{%
+Doherty%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2016}}%
+}]{%
+ipadict}
+\APACinsertmetastar {%
+ipadict}%
+\begin{APACrefauthors}%
+Doherty, L.%
+, Panigrahi, S.%
+\BCBL {}\ \BBA {} do Carmo, E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2016}.
+\newblock
+\APACrefbtitle {ipa-dict - Monolingual wordlists with pronunciation information
+  in IPA} {ipa-dict - monolingual wordlists with pronunciation information in
+  ipa}.
+\newblock
+\begin{APACrefURL}
+  \url{https://github.com/spellcheck-ko/korean-dict-nikl/tree/master}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Mi%
+, Yang%
+, Wang%
+, Zhou%
+\BCBL {}\ \BBA {} Jiang%
+}{%
+Mi%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2018}}%
+}]{%
+mi2018}
+\APACinsertmetastar {%
+mi2018}%
+\begin{APACrefauthors}%
+Mi, C.%
+, Yang, Y.%
+, Wang, L.%
+, Zhou, X.%
+\BCBL {}\ \BBA {} Jiang, T.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{{\APACmonth{05}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A Neural Network Based Model for Loanword Identification
+  in {U}yghur} {A neural network based model for loanword identification in
+  {U}yghur}.{\BBCQ}
+\newblock
+\BIn{} N.~Calzolari\ \BOthers {.}\ (\BEDS), \APACrefbtitle {Proceedings of the
+  Eleventh International Conference on Language Resources and Evaluation
+  ({LREC} 2018).} {Proceedings of the eleventh international conference on
+  language resources and evaluation ({LREC} 2018).}
+\newblock
+\APACaddressPublisher{Miyazaki, Japan}{European Language Resources Association
+  (ELRA)}.
+\newblock
+\begin{APACrefURL} \url{https://aclanthology.org/L18-1565} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Mi%
+\ \protect \BOthers {.}}{%
+Mi%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2016}}%
+}]{%
+mi2016}
+\APACinsertmetastar {%
+mi2016}%
+\begin{APACrefauthors}%
+Mi, C.%
+, Yang, Y.%
+, Zhou, X.%
+, Wang, L.%
+, Li, X.%
+\BCBL {}\ \BBA {} Jiang, T.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{{\APACmonth{10}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Recurrent Neural Network Based Loanwords Identification
+  in {U}yghur} {Recurrent neural network based loanwords identification in
+  {U}yghur}.{\BBCQ}
+\newblock
+\BIn{} \APACrefbtitle {Proceedings of the 30th Pacific Asia Conference on
+  Language, Information and Computation: Oral Papers} {Proceedings of the 30th
+  pacific asia conference on language, information and computation: Oral
+  papers}\ (\BPGS\ 209--217).
+\newblock
+\APACaddressPublisher{Seoul, South Korea}{}.
+\newblock
+\begin{APACrefURL} \url{https://aclanthology.org/Y16-2019} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+J.~Miller%
+, Pariasca%
+\BCBL {}\ \BBA {} Beltran~Casta{\~n}on%
+}{%
+J.~Miller%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2021}}%
+}]{%
+miller2021}
+\APACinsertmetastar {%
+miller2021}%
+\begin{APACrefauthors}%
+Miller, J.%
+, Pariasca, E.%
+\BCBL {}\ \BBA {} Beltran~Casta{\~n}on, C.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2021}{{\APACmonth{09}}}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Neural Borrowing Detection with Monolingual Lexical
+  Models} {Neural borrowing detection with monolingual lexical models}.{\BBCQ}
+\newblock
+\BIn{} S.~Djabri, D.~Gimadi, T.~Mihaylova\BCBL {}\ \BBA {} I.~Nikolova-Koleva\
+  (\BEDS), \APACrefbtitle {Proceedings of the Student Research Workshop
+  Associated with RANLP 2021} {Proceedings of the student research workshop
+  associated with ranlp 2021}\ (\BPGS\ 109--117).
+\newblock
+\APACaddressPublisher{Online}{INCOMA Ltd.}
+\newblock
+\begin{APACrefURL} \url{https://aclanthology.org/2021.ranlp-srw.16}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+J\BPBI E.~Miller%
+\ \protect \BOthers {.}}{%
+J\BPBI E.~Miller%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2020}}%
+}]{%
+miller2020}
+\APACinsertmetastar {%
+miller2020}%
+\begin{APACrefauthors}%
+Miller, J\BPBI E.%
+, Tresoldi, T.%
+, Zariquiey, R.%
+, Beltr{\'a}n~Casta{\~n}{\'o}n, C\BPBI A.%
+, Morozova, N.%
+\BCBL {}\ \BBA {} List, J\BHBI M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2020}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Using lexical language models to detect borrowings in
+  monolingual wordlists} {Using lexical language models to detect borrowings in
+  monolingual wordlists}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Plos one}{15}{12}{e0242709}.
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Roher%
+}{%
+Roher%
+}{%
+{\protect \APACyear {2023}}%
+}]{%
+etymologydb}
+\APACinsertmetastar {%
+etymologydb}%
+\begin{APACrefauthors}%
+Roher, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2023}.
+\newblock
+\APACrefbtitle {etymology-db} {etymology-db}.
+\newblock
+\begin{APACrefURL} \url{https://github.com/droher/etymology-db}
+  \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\end{thebibliography}

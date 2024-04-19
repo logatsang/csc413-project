@@ -1,0 +1,78 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}   % Standard tools
+\usepackage{amssymb}   % Math symbols
+\usepackage{graphicx}  % Images
+\usepackage{framed}    % "Framed" environment
+\usepackage{tikz}
+\usepackage{tikz-qtree}
+\usetikzlibrary{calc}
+\usepackage{cancel}
+\usepackage{apacite}
+\let\checkmark\origcheckmark
+\usepackage{dingbat} % pointer arrow
+\usepackage{utfsym}
+\usepackage{fourier} % bomb
+
+\title{\vspace{-3cm}Exploration of neural methods on English etymological classification}
+\date{\today}
+\author{Robin Huo \\ robin.huo@mail.utoronto.ca
+\and Tim Logatsang \\ tim.logatsang@mail.utoronto.ca
+\and Charles Wong \\ charleshm.wong@mail.utoronto.ca}
+
+% ************ SECTION FORMAT ************ %
+
+% ************ CUSTOM COMMANDS ********** %
+%\newfontfamily\IPAfont[AutoFakeBold=1.5]{Times New Roman}
+%\DeclareTextFontCommand{\ipa}{\IPAfont}
+%
+%\newfontfamily\unisymbols{DejaVu Sans}
+%
+%\newcommand{\cross}{\usym{2718}}
+%\renewcommand{\checkmark}{\usym{2714}}
+
+\begin{document}
+	\maketitle
+	
+	\section{Introduction}
+	
+	\section{Problem definition}        % define the problem (including brief motivation of solving this problem, and relevant dataset)
+	Etymology is the study of the origin of words or other linguistic items.
+	The term \textit{etymology} is also used to refer to a specific etymological origin.
+	Generally speaking, words and linguistic structures are either borrowed or inherited.
+	A linguistic item or construction is said to be borrowed if it is introduced into the language from an external language or variety, which provides the borrowed form.
+	Borrowed words are also commonly called loanwords.
+	For example, the English word \textit{pasta} is borrowed from the Italian word \textit{pasta}, which means pasta or noodles.
+	Anything that is not borrowed is inherited.
+	For example, the word \textit{word} has existed in English, in this or an earlier form, for as long as historical linguists can presently discern.
+	
+	Words of different origins may sometimes interact in different ways with the other systems of the language.
+	For example, words of Latinate origin typically take the \textit{in-} prefix when deriving a negated form, e.g., \textit{in-validate}.
+	On the other hand, native English words typically take the \textit{un-} prefix instead, e.g., \textit{un-lock}.
+	Thus, knowing the etymology of the word can in some cases allow a speaker or system to more competently use language.
+	
+	It is common for words of different sources to display characteristic formal properties reflecting their origins.
+	Thus, it is possible in some cases to predict the origin of a word given its form, to an extent.
+	It is this problem that we wish to explore using neural techniques.
+	Specifically, given an English word as input, we wish to predict the origin of the word given a set of predefined etymological classes.
+	We will use the etymology-db \cite{etymologydb} dataset (more detail later) for etymological data.
+	
+	\section{Summary of prior work}     % provide a brief summary of prior work
+	
+	While we are the first to apply such methods to etymological classification within the English language in particular, use of neural and deep learning methods to identify cases of lexical borrowing as well as the donor language has been explored in the past.
+	
+	\citeA{mi2016} uses recurrent neural networks (RNNs) to classify loanwords in Uyghur as originating from one of Chinese, Russian, and Arabic, achieving a macro-averaged F1 score of 0.7950. Later, \citeA{mi2018} uses convolutional neural networks (CNNs) with long short-term memory on the same problem to achieve an average F1 score of 0.8040.
+	
+	\citeA{miller2020} implements an RNN among other models in the task of predicting whether a word is borrowed or inherited across 41 different languages, with up to 2,000 words per language as training data, achieving an F1 score of 0.661. \citeA{miller2021} applies a simplified transformer model to the same task, achieving a lower F1 score of 0.559, but a shorter training time than the baseline based on RNNs.
+	
+	One of the authors previously submitted a project for CSC311, applying CNNs to achieve an F1 score of 0.83101 in classifying Korean nouns across nine different languages of origin.
+	
+	\section{Methodology}
+	
+	\section{Experiments and Results}
+	
+	\section{Conclusion}
+	
+	\bibliographystyle{apacite}
+	\bibliography{citations}
+\end{document}
