@@ -22,6 +22,7 @@ from model.transformer_encoder import EtymologyTransformerEncoder
 DATA = r"data/etymology_top10.csv"
 SEED = 3939
 
+
 def build_cnn(vocab_size, num_classes, padding_idx, args):
     return EtymologyCNN(
         vocab_size=vocab_size,
@@ -31,8 +32,9 @@ def build_cnn(vocab_size, num_classes, padding_idx, args):
         padding_idx=padding_idx,
         conv_layers=tuple(
             (args.conv_kernel_size, 1, 1, 2, 2, 0) for _ in range(args.num_layers)
-        )
+        ),
     )
+
 
 def build_rnn(vocab_size, num_classes, padding_idx, args):
     return EtymologyRNN(
@@ -44,6 +46,7 @@ def build_rnn(vocab_size, num_classes, padding_idx, args):
         padding_idx=padding_idx,
         rnn_type=args.rnn_type,
     )
+
 
 def build_transformer(vocab_size, num_classes, padding_idx, args):
     return EtymologyTransformerEncoder(
@@ -58,9 +61,13 @@ def build_transformer(vocab_size, num_classes, padding_idx, args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--input", type=Path, default=DATA, help="Path to data CSV")
+    parser.add_argument(
+        "-i", "--input", type=Path, default=DATA, help="Path to data CSV"
+    )
     parser.add_argument("-o", "--output", type=Path, help="Path to save images")
-    parser.add_argument("--eval_every", type=int, default=5, help="Number of epochs to eval at")
+    parser.add_argument(
+        "--eval_every", type=int, default=5, help="Number of epochs to eval at"
+    )
     parser.add_argument("--embedding_size", type=int, default=512)
     parser.add_argument("--batch_size", type=int, default=256)
     parser.add_argument("--num_epochs", type=int, default=50)
@@ -78,7 +85,9 @@ if __name__ == "__main__":
     parser_cnn.add_argument("--conv_kernel_size", type=int, default=3)
     parser_cnn.set_defaults(factory=build_cnn)
 
-    parser_trans = subparsers.add_parser("transformer", help="Train a transformer encoder model")
+    parser_trans = subparsers.add_parser(
+        "transformer", help="Train a transformer encoder model"
+    )
     parser_trans.add_argument("--num_layers", type=int, default=6)
     parser_trans.add_argument("--nhead", type=int, default=8)
     parser_trans.set_defaults(factory=build_transformer)
@@ -86,18 +95,24 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if gpu := torch.cuda.is_available():
-        device = torch.device('cuda')
+        device = torch.device("cuda")
         print(f"Using GPU: {torch.cuda.get_device_name(0)}")
     else:
-        device = torch.device('cpu')
+        device = torch.device("cpu")
         print(f"Using CPU")
 
     df = pd.read_csv(args.input)
-    input_vec, target_vec, i_to_lang, i_to_char, vocab_size, num_output_classes = df_to_array(df)
+    input_vec, target_vec, i_to_lang, i_to_char, vocab_size, num_output_classes = (
+        df_to_array(df)
+    )
     padding_idx = vocab_size - 1
 
-    X_train, X_test, y_train, y_test = train_test_split(input_vec, target_vec, test_size=0.4, stratify=target_vec, random_state=SEED)
-    X_test, X_val, y_test, y_val = train_test_split(X_test, y_test, test_size=0.5, stratify=y_test, random_state=SEED)
+    X_train, X_test, y_train, y_test = train_test_split(
+        input_vec, target_vec, test_size=0.4, stratify=target_vec, random_state=SEED
+    )
+    X_test, X_val, y_test, y_val = train_test_split(
+        X_test, y_test, test_size=0.5, stratify=y_test, random_state=SEED
+    )
 
     # Hyperparameters
     word_embedding_size = args.embedding_size
@@ -164,7 +179,8 @@ if __name__ == "__main__":
 
     lr_scheduler = lr_scheduler.LambdaLR(
         optimizer=optimizer,
-        lr_lambda=lambda step: word_embedding_size ** (-0.5) * min((step if step else 1) ** (-0.5), (step if step else 1) * 300 ** (-1.5)),
+        lr_lambda=lambda step: word_embedding_size ** (-0.5)
+        * min((step if step else 1) ** (-0.5), (step if step else 1) * 300 ** (-1.5)),
     )
 
     validate_freq = args.eval_every
@@ -179,13 +195,24 @@ if __name__ == "__main__":
     loss_data = []
 
     model.train()
-    barfmt = ('{l_bar}{bar}| %d/' + str(num_epochs)
-              + ' [{elapsed}<{remaining}{postfix}]')
-    with tqdm(total=num_training_steps, desc='Training', unit='epoch',
-              bar_format=barfmt % 0, position=0, dynamic_ncols=True) as pbar:
+    barfmt = "{l_bar}{bar}| %d/" + str(num_epochs) + " [{elapsed}<{remaining}{postfix}]"
+    with tqdm(
+        total=num_training_steps,
+        desc="Training",
+        unit="epoch",
+        bar_format=barfmt % 0,
+        position=0,
+        dynamic_ncols=True,
+    ) as pbar:
         for epoch in trange(1, num_epochs + 1):
-            with tqdm(total=len(train_dl), desc=f'Epoch {epoch}', leave=False, unit='batch',
-                      position=1, dynamic_ncols=True) as it:
+            with tqdm(
+                total=len(train_dl),
+                desc=f"Epoch {epoch}",
+                leave=False,
+                unit="batch",
+                position=1,
+                dynamic_ncols=True,
+            ) as it:
 
                 # train
                 model.train()
@@ -217,8 +244,14 @@ if __name__ == "__main__":
                 accurate = 0
                 all_logits = []
                 all_labels = []
-                with tqdm(total=len(val_dl), desc=f'Validating Epoch {epoch}', leave=False, unit='batch',
-                          position=1, dynamic_ncols=True) as it:
+                with tqdm(
+                    total=len(val_dl),
+                    desc=f"Validating Epoch {epoch}",
+                    leave=False,
+                    unit="batch",
+                    position=1,
+                    dynamic_ncols=True,
+                ) as it:
                     for i, (X, y) in enumerate(val_dl):
                         X = X.to(device)
                         y = y.to(device)
@@ -238,18 +271,26 @@ if __name__ == "__main__":
 
                 all_labels = torch.cat(all_labels, dim=0)
                 all_logits = torch.cat(all_logits, dim=0)
-                validation_roc.append(roc_auc_score(
-                    all_labels.cpu(),
-                    all_logits.softmax(dim=-1).cpu(),
-                    multi_class="ovo",
-                ))
-                tqdm.write(f"Validation ROC AUC after epoch {epoch}: {validation_roc[-1]:.4}")
-                validation_f1.append(f1_score(
-                    all_labels.cpu(),
-                    all_logits.argmax(dim=-1).cpu(),
-                    average="macro",
-                ))
-                tqdm.write(f"Validation F1-score after epoch {epoch}: {validation_f1[-1]:.4}")
+                validation_roc.append(
+                    roc_auc_score(
+                        all_labels.cpu(),
+                        all_logits.softmax(dim=-1).cpu(),
+                        multi_class="ovo",
+                    )
+                )
+                tqdm.write(
+                    f"Validation ROC AUC after epoch {epoch}: {validation_roc[-1]:.4}"
+                )
+                validation_f1.append(
+                    f1_score(
+                        all_labels.cpu(),
+                        all_logits.argmax(dim=-1).cpu(),
+                        average="macro",
+                    )
+                )
+                tqdm.write(
+                    f"Validation F1-score after epoch {epoch}: {validation_f1[-1]:.4}"
+                )
 
             pbar.bar_format = barfmt % epoch
 
@@ -292,4 +333,3 @@ if __name__ == "__main__":
         print(f"Saved image to {str(outpath)}")
     else:
         plt.show()
-
