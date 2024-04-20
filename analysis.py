@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-from transformer_runner import df_to_array
+from run import df_to_array
 
 if __name__ == "__main__":
     df = pd.read_csv("data/etymology_proc.csv")
