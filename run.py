@@ -31,7 +31,7 @@ def build_cnn(vocab_size, num_classes, padding_idx, args):
         conv_filter_count=args.conv_filter_count,
         padding_idx=padding_idx,
         conv_layers=tuple(
-            (args.conv_kernel_size, 1, 1, 2, 2, 0) for _ in range(args.num_layers)
+            (args.conv_kernel_size, 1, args.conv_kernel_size - 1, 2, 2, 0) for _ in range(args.num_layers)
         ),
     )
 
