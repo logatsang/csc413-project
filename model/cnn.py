@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import Sequence
 import torch
 
 
@@ -16,7 +16,7 @@ class EtymologyCNN(torch.nn.Module):
         vocab_size: int,
         embedding_size: int,
         num_classes: int,
-        conv_layers: tuple[tuple[int, ...]],
+        conv_layers: Sequence[tuple[int, ...]],
         conv_filter_count: int = 1,
         padding_idx: int = 0
     ) -> None:
