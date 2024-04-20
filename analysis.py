@@ -14,6 +14,13 @@ if __name__ == "__main__":
     for lang in target_vec:
         count_lang[lang] += 1
 
+    print(f"Total related langauges: {len(count_lang)}")
+
+    sorted_langs = sorted([lang for lang in count_lang], key= lambda x: count_lang[x], reverse=True)
+
+    print(f"Top 5 languages: {str([i_to_lang[i] for i in sorted_langs[:5]])}")
+    print(f"Percentage of dataset (Top 5): {sum(count_lang[i] for i in sorted_langs[:5]) / len(target_vec):.2%}")
+
     ranked_counts = np.log(np.array(sorted((val for val in count_lang.values()), reverse=True)))
     ranks = np.log(np.arange(1, len(ranked_counts) + 1))
 
