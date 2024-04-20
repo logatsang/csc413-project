@@ -56,6 +56,8 @@ class EtymologyCNN(torch.nn.Module):
                 padding=conv_padding
             )
 
+            relu_layer = torch.nn.ReLU(inplace=False)
+
             pool_layer = torch.nn.AvgPool1d(
                 kernel_size=pool_kernel_size,
                 stride=pool_stride,
@@ -63,6 +65,7 @@ class EtymologyCNN(torch.nn.Module):
             )
 
             self.conv.append(conv_layer)
+            self.conv.append(relu_layer)
             self.conv.append(pool_layer)
 
         self.proj = torch.nn.Linear(
