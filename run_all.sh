@@ -1,5 +1,5 @@
 for k in 10 8 25 100 6 5 4 3 2 7 9; do
-    cmd="python3 transformer_runner.py -i data/etymology_top${k}.csv $*"
+    cmd="python3 run.py -i data/etymology_top${k}.csv $*"
     for embedding_size in 256 512; do
         # rnn
         for rnn_type in rnn gru lstm; do
