@@ -36,7 +36,13 @@
 	
 	\section{Introduction}
 	
-	\section{Problem definition}        % define the problem (including brief motivation of solving this problem, and relevant dataset)
+	Historical linguistics deals with different aspects of language change, one of which being etymology, the reconstruction and origin of words and other linguistic items. Traditional approaches to this field mostly involve looking at historical texts and tracing word formation and borrowings. The use of data-driven techniques is thus a lesser explored domain of research. The central observation motivating our approach is that patterns in morphology emerge as a result of borrowings from any specific language into another. As such, it may be possible to identify such classes of vocabulary within a language using statistical modelling, specifically using neural networks.
+	
+	In this paper, we assess the viability of using different neural network architectures in predicting the source language of borrowings into English. We compare CNN, RNN, and Encoder-only Transformer architectures. An important feature of our approach is that the inputs to all of these models are fixed-length character-level embeddings.
+	
+	Section \ref{sec:prob} of this paper further defines the problem space and some theoretical challenges. Section \ref{sec:summ} discusses prior work done in this area. Sections \ref{sec:meth} and \ref{sec:exp} describes our methodology, and presents our experiemental results. Section \ref{sec:conc} includes our conclusion and discussion of future work.
+	
+	\section{Problem definition} \label{sec:prob}        % define the problem (including brief motivation of solving this problem, and relevant dataset)
 	Etymology is the study of the origin of words or other linguistic items.
 	The term \textit{etymology} is also used to refer to a specific etymological origin.
 	Generally speaking, words and linguistic structures are either borrowed or inherited.
@@ -57,7 +63,7 @@
 	Specifically, given an English word as input, we wish to predict the origin of the word given a set of predefined etymological classes.
 	We will use the etymology-db \cite{etymologydb} dataset (more detail later) for etymological data.
 	
-	\section{Summary of prior work}     % provide a brief summary of prior work
+	\section{Summary of prior work} \label{sec:summ}  % provide a brief summary of prior work
 	
 	While we are the first to apply such methods to etymological classification within the English language in particular, use of neural and deep learning methods to identify cases of lexical borrowing as well as the donor language has been explored in the past.
 	
@@ -67,11 +73,19 @@
 	
 	One of the authors previously submitted a project for CSC311, applying CNNs to achieve an F1 score of 0.83101 in classifying Korean nouns across nine different languages of origin.
 	
-	\section{Methodology}
+	\section{Methodology} \label{sec:meth}
 	
-	\section{Experiments and Results}
+	\subsection{CNN}
 	
-	\section{Conclusion}
+	\subsection{RNN}
+	
+	\subsection{Transformer}
+	
+	
+	
+	\section{Experiments and Results} \label{sec:exp}
+	
+	\section{Conclusion} \label{sec:conc}
 	
 	\bibliographystyle{apacite}
 	\bibliography{citations}
