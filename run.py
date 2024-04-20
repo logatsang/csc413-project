@@ -267,7 +267,7 @@ if __name__ == "__main__":
 
                 accuracy = accurate / len(y_val)
                 tqdm.write(f"Validation accuracy after epoch {epoch}: {accuracy:.4%}")
-                validation_score.append(accuracy.cpu())
+                validation_score.append(accuracy.cpu()) # type: ignore
 
                 all_labels = torch.cat(all_labels, dim=0)
                 all_logits = torch.cat(all_logits, dim=0)
